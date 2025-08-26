@@ -1,3 +1,5 @@
+/* Utility */
+
 body {
     height: 100%;
     margin: 0;
@@ -5,21 +7,13 @@ body {
     box-sizing: border-box;
 }
 
-
-
-.footer {
-    background: #f5f5f5;
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
     padding: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #555;
-    border-top: 1px solid #ddd;
 }
 
-.footer-about,
-.footer-contact {
-    margin-bottom: 0.3rem;
-}
+/* NavBar */
 
 .navbar {
     background: #1976d2;
@@ -43,4 +37,84 @@ body {
 .navbar a.active,
 .navbar a:hover {
     background: #1565c0;
+}
+
+
+
+/* Stile per la tabella delle task */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #1976d2;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: #f5faff;
+}
+
+td {
+    font-size: 1rem;
+}
+
+.status-todo {
+    background: #ffeaea;
+    color: #d32f2f;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+}
+
+.status-doing {
+    background: #fff9e5;
+    color: #fbc02d;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+}
+
+.status-done {
+    background: #e7ffe7;
+    color: #388e3c;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+}
+
+
+/* footer */
+
+.footer {
+    background: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid #ddd;
+}
+
+.footer-about,
+.footer-contact {
+    margin-bottom: 0.3rem;
 }
