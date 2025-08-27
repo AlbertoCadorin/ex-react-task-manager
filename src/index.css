@@ -151,6 +151,10 @@ form button:hover {
     background: #1565c0;
 }
 
+.error {
+    color: #d32f2f;
+}
+
 /* footer */
 
 .footer {
