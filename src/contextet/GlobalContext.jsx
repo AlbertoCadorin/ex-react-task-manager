@@ -1,25 +1,15 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext } from "react";
+import useTask from "../../hooks/useTask";
 
-export const API_URL = import.meta.env.VITE_API_URL;
 
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
 
-    const [tasks, setTasks] = useState([]);
-
-    useEffect(() => {
-        const fetchTasks = async () => {
-            const response = await fetch(`${API_URL}/tasks`);
-            const data = await response.json();
-            console.log(data);
-            setTasks(data);
-        };
-        fetchTasks();
-    }, []);
+    const taskData = useTask();
 
     return (
-        <GlobalContext.Provider value={{ tasks, setTasks }}>
+        <GlobalContext.Provider value={{ ...taskData }}>
             {children}
         </GlobalContext.Provider>
     );

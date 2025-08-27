@@ -103,6 +103,54 @@ td {
 }
 
 
+/* Stile per il form di aggiunta task */
+form {
+    background: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    max-width: 500px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #fafcff;
+    transition: border 0.2s;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #1976d2;
+    outline: none;
+}
+
+form button {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+form button:hover {
+    background: #1565c0;
+}
+
 /* footer */
 
 .footer {
