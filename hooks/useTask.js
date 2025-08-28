@@ -15,25 +15,18 @@ export default function useTask() {
     }, []);
 
     // aggiungi una task
-    const addTask = async ({ title, description, status }) => {
-        try {
-            const response = await fetch(`${API_URL}/tasks`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title, description, status })
-            });
+    const addTask = async newTask => {
+        const response = await fetch(`${API_URL}/tasks`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newTask)
+        });
 
-            const result = await response.json();
-            if (result.succes) {
-                setTasks(prev => [...prev, result.tasks]);
-                alert("Task aggiunto con successo!");
-            } else {
-                throw new Error(result.message || "Errore creazione task");
-            }
-        } catch (error) {
-            console.error("Failed to add task:", error);
-            alert(`Errore nella creazione della task: ${error}`);
-        }
+        const { success, message, task } = await response.json()
+        if (!success) throw new Error(message);
+
+        setTasks(prev => [...prev, task])
+
     }
 
     // eliimiina task

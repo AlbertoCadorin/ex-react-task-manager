@@ -1,12 +1,12 @@
-import { useState, useRef } from "react";
-import useTask from "../../hooks/useTask";
+import { useState, useRef, useContext } from "react";
+import { GlobalContext } from "../contextet/GlobalContext";
 
 export default function AddTask() {
     const [title, setTitle] = useState("");
     const descriptionRef = useRef();
     const statusRef = useRef();
     const [errTitle, setErrTitle] = useState('');
-    const { addTask } = useTask();
+    const { addTask } = useContext(GlobalContext);
 
     const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
@@ -29,7 +29,7 @@ export default function AddTask() {
     };
 
     // submit form
-    const submitForm = (e) => {
+    const submitForm = async e => {
         e.preventDefault();
 
         // Validazione finale prima di inviare
@@ -37,31 +37,25 @@ export default function AddTask() {
             setErrTitle("Il titolo non può essere vuoto");
             return;
         }
-        const hasSymbols = symbols.split("").some((symbol) => title.includes(symbol));
-        if (hasSymbols) {
-            setErrTitle("Il titolo non può contenere caratteri speciali");
-            return;
-        }
 
-        setErrTitle(""); // resetta errore se tutto ok
 
-        console.log(`
-            Titolo: ${title}
-            Descrizione: ${descriptionRef.current.value}
-            Stato: ${statusRef.current.value}
-        `);
-
-        addTask({
+        const newTask = {
             title,
             description: descriptionRef.current.value,
             status: statusRef.current.value
-        });
+        };
+
+        try {
+            await addTask(newTask);
+            alert("Task aggiunto con successo!");
+            setTitle("");
+            descriptionRef.current.value = "";
+            statusRef.current.value = "";
+        } catch (error) {
+            alert("Errore durante l'aggiunta della task: " + error.message);
+        }
 
 
-        // resetta i campi 
-        setTitle("");
-        descriptionRef.current.value = "";
-        statusRef.current.value = "";
 
     };
 
