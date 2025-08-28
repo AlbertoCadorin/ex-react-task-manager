@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
+import useTask from "../../hooks/useTask";
 
 export default function AddTask() {
     const [title, setTitle] = useState("");
     const descriptionRef = useRef();
     const statusRef = useRef();
     const [errTitle, setErrTitle] = useState('');
+    const { addTask } = useTask();
 
     const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
@@ -48,6 +50,19 @@ export default function AddTask() {
             Descrizione: ${descriptionRef.current.value}
             Stato: ${statusRef.current.value}
         `);
+
+        addTask({
+            title,
+            description: descriptionRef.current.value,
+            status: statusRef.current.value
+        });
+
+
+        // resetta i campi 
+        setTitle("");
+        descriptionRef.current.value = "";
+        statusRef.current.value = "";
+
     };
 
     return (
@@ -73,9 +88,9 @@ export default function AddTask() {
                     ref={statusRef}
                 >
                     <option value="">Seleziona uno stato</option>
-                    <option value="to-do">To Do</option>
-                    <option value="doing">Doing</option>
-                    <option value="done">Done</option>
+                    <option value="To do">To Do</option>
+                    <option value="Doing">Doing</option>
+                    <option value="Done">Done</option>
                 </select>
 
                 <button type="submit">Aggiungi</button>
