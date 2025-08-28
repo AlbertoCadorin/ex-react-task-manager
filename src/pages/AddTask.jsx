@@ -38,7 +38,6 @@ export default function AddTask() {
             return;
         }
 
-
         const newTask = {
             title,
             description: descriptionRef.current.value,
