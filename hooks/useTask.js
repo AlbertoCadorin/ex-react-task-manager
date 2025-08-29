@@ -30,7 +30,16 @@ export default function useTask() {
     }
 
     // eliimiina task
-    const removeTask = (remove) => {
+
+    const removeTask = async taskId => {
+        const response = await fetch(`${API_URL}/tasks/${taskId}`, {
+            method: "DELETE"
+        });
+
+        const { success, message } = await response.json()
+        if (!success) throw new Error(message)
+
+        setTasks(prev => prev.filter(task => task.id != taskId))
 
     }
 
